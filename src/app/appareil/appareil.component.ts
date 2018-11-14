@@ -29,11 +29,11 @@ export class AppareilComponent implements OnInit {
     return this.appareilStatus === 'allumé' ? 'green' : 'red';
   }
 
-  onSwitchOn() {
-    this.appareilService.switchOnOne(this.indexOfAppareil);
-  }
-
-  onSwitchOff() {
-    this.appareilService.switchOffOne(this.indexOfAppareil);
+  onSwitch() {
+    if (this.appareilStatus === 'allumé') {
+      this.appareilService.switchOffOne(this.indexOfAppareil);
+    } else {
+      this.appareilService.switchOnOne(this.indexOfAppareil);
+    }
   }
 }
