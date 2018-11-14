@@ -1,8 +1,11 @@
 <li [ngClass]="{'list-group-item': true,
               'list-group-item-success': !eteint(),
               'list-group-item-danger': eteint()}">
-  <div style="width:20px; height:20px; background-color:red;"
-      *ngIf="eteint()"></div>
-  <h4 [ngStyle]="{color: getColor()}">Appareil: {{ appareilName }} -- Statut : {{ getStatus() }}</h4>
-  <input type="text" class="form-control" [(ngModel)]="appareilName">
+    <h4 [ngStyle]="{color: getColor()}">Appareil: {{ appareilName }} -- Statut : {{ getStatus() }}</h4>
+    <button class="btn btn-success"
+            (click)="onSwitchOn()"
+            [disabled]="!eteint()">Allumer</button>
+    <button class="btn btn-danger"
+            (click)="onSwitchOff()"
+            [disabled]="eteint()">Éteindre</button>
 </li>

@@ -6,8 +6,9 @@
       <p>Dernière mise à jour: {{ lastUpdate | async | date: 'd EEEE MMMM y' | uppercase }}</p>
 
       <ul class="list-group">
-        <app-appareil *ngFor="let appareil of appareils"
+        <app-appareil *ngFor="let appareil of appareils; let i = index"
                       [appareilName]="appareil.name"
+                      [indexOfAppareil]="i"
                       [appareilStatus]="appareil.status"></app-appareil>
       </ul>
       <button class="btn btn-success"
