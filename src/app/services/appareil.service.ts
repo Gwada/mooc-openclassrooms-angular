@@ -1,21 +1,10 @@
+import { Appareil } from '../prototypes/appareils';
+
 export class AppareilService {
     appareils = [
-        {
-            id: 1,
-            name: 'Machine à laver',
-            status: 'allumé'
-        },
-        {
-            id: 2,
-            name: 'Télévision',
-            status: 'allumé'
-        },
-        {
-
-            id: 3,
-            name: 'Ordinateur',
-            status: 'éteint'
-        }
+        new Appareil(1, 'Machine à laver', 'allumé'),
+        new Appareil(2, 'Télévision', 'allumé'),
+        new Appareil(3, 'Ordinateur', 'éteint')
     ];
 
     getAppareilById(id: number) {
@@ -28,21 +17,21 @@ export class AppareilService {
     }
     switchOnAll() {
         for (const appareil of this.appareils) {
-            appareil.status = 'allumé';
+            appareil.setStatus('allumé');
         }
     }
 
     switchOffAll() {
         for (const appareil of this.appareils) {
-            appareil.status = 'éteint';
+            appareil.setStatus('éteint');
         }
     }
 
     switchOnOne(index: number) {
-        this.appareils[index].status = 'allumé';
+        this.appareils[index].setStatus('allumé');
     }
 
     switchOffOne(index: number) {
-        this.appareils[index].status = 'éteint';
+        this.appareils[index].setStatus('éteint');
     }
 }

@@ -5,10 +5,10 @@
 
         <ul class="list-group w-100">
                 <app-appareil *ngFor="let appareil of appareils; let i = index"
-                        [appareilName]="appareil.name"
+                        [appareilName]="appareil.getName()"
                         [indexOfAppareil]="i"
-                        [appareilStatus]="appareil.status"
-                        [id]="appareil.id"></app-appareil>
+                        [appareilStatus]="appareil.getStatus()"
+                        [id]="appareil.getId()"></app-appareil>
         </ul>
         <button class="btn btn-success"
                 (click)="onAllumer()">Tout allumer</button>

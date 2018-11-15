@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppareilService } from '../services/appareil.service';
+import { Appareil } from '../prototypes/appareils';
 
 @Component({
   selector: 'app-appareil-view',
@@ -8,7 +9,7 @@ import { AppareilService } from '../services/appareil.service';
 })
 export class AppareilViewComponent implements OnInit {
 
-  appareils: any[];
+  appareils: Appareil[];
 
   isAuth = false;
 
