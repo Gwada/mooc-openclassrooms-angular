@@ -9,8 +9,8 @@ export class AppareilService {
 
     getAppareilById(id: number) {
         const appareil = this.appareils.find(
-            (appareilObject) => {
-                return appareilObject.id === id;
+            (a) => {
+                return a.id === id;
             }
         );
         return appareil;
