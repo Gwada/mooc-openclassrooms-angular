@@ -24,8 +24,6 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '/not-found' }
 ];
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
