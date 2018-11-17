@@ -1,5 +1,5 @@
-import { Appareil } from '../prototypes/appareils';
 import { Subject } from 'rxjs';
+import { Appareil } from '../models/appareils';
 
 export class AppareilService {
 
@@ -17,6 +17,7 @@ export class AppareilService {
 
     addAppareil(name: string, status: string) {
         const newId = this.appareils[this.appareils.length - 1].id + 1;
+
         this.appareils.push(new Appareil(newId, name, status));
         this.emitAppareilSubject();
     }

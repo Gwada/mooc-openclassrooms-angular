@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppareilService } from '../services/appareil.service';
-import { Appareil } from '../prototypes/appareils';
+import { Appareil } from '../models/appareils';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
