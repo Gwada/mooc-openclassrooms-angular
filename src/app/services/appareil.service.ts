@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Appareil } from '../models/appareils';
+import { Appareil } from '../models/Appareils.model';
 
 export class AppareilService {
 
