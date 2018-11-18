@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,11 +14,11 @@ import { AuthService } from './services/auth.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { MonPremierComponent } from './mon-premier/mon-premier.component';
+import { NewUserComponent } from './new-user/new-user.component';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user.service';
-import { NewUserComponent } from './new-user/new-user.component';
 
 const appRoutes: Routes = [
   { path: 'appareils', canActivate: [AuthGuard], component: AppareilViewComponent },
@@ -34,21 +35,22 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MonPremierComponent,
     AppareilComponent,
-    AuthComponent,
     AppareilViewComponent,
-    SingleAppareilComponent,
-    FourOhFourComponent,
+    AuthComponent,
     EditAppareilComponent,
-    UserListComponent,
-    NewUserComponent
+    FourOhFourComponent,
+    MonPremierComponent,
+    NewUserComponent,
+    SingleAppareilComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

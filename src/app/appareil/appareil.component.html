@@ -1,8 +1,8 @@
 <li [ngClass]="{ 'list-group-item w-100': true,
               'list-group-item-success': !eteint(),
               'list-group-item-danger': eteint() }">
-    <h4 [ngStyle]="{ color: getColor() }">Appareil: {{ appareil.getName() }} -- Statut : {{ appareil.getStatus() }}</h4>
-    <a [routerLink]="[ appareil.getId() ]">Détails</a>
+    <h4 [ngStyle]="{ color: getColor() }">Appareil: {{ appareil.name }} -- Statut : {{ appareil.status }}</h4>
+    <a [routerLink]="[ appareil.id ]">Détails</a>
     <button class="btn btn-sm btn-success"
             (click)="onSwitch()"
             [disabled]="!eteint()">Allumer</button>
