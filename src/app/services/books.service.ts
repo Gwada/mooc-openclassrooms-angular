@@ -87,7 +87,8 @@ export class BooksService {
       (resolve, reject) => {
         const almostUniqueFileName = Date.now().toString();
 
-        const upload = firebase.storage().ref()
+        const upload = firebase.storage()
+          .ref()
           .child(`images/${almostUniqueFileName}${file.name}`)
           .put(file)
         ;
