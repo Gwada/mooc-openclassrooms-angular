@@ -1,13 +1,21 @@
 <li [ngClass]="{'list-group-item': true,
                 'list-group-item-success': post.loveIts > 0,
                 'list-group-item-danger': post.loveIts < 0}">
-  <div class="d-flex justify-content-between">
-    <h4>{{ post.title }}</h4>
-    <small>{{ post.created_at | date: 'short' }}</small>
-  </div>
-  <p>{{ post.content }}</p>
-  <button class="btn btn-success"
-          (click)="addLike()">Love it!</button>
-  <button class="btn btn-danger"
-          (click)="removeLike()">Don't love it!</button>
+
+        <div class="d-flex justify-content-between">
+                <h4 class="text-center">{{ post.title }}</h4>
+                <small>{{ post.created_at }}</small>
+        </div>
+
+        <p>{{ post.content }}</p>
+
+        <button class="btn btn-success"
+                (click)="onAddLike()">Love it!</button>
+
+        <button class="btn btn-danger"
+                (click)="onRemoveLike()">Don't love it!</button>
+
+        <button class="btn btn-info float-right"
+                (click)="onRemovePost()">Supprimer le post</button>
+
 </li>

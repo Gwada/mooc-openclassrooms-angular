@@ -8,11 +8,7 @@ import * as firebase from 'firebase';
 })
 export class PostService implements OnInit {
 
-  posts = [
-    new Post('Mon premier post', 'contenu du premier post'),
-    new Post('Mon deuxième post', 'contenu du deuxième post'),
-    new Post('Encore un post', 'contenu du troisième post')
-  ];
+  posts: Post[] = [];
   postSubject = new Subject<Post[]>();
 
   constructor() { }
@@ -40,23 +36,6 @@ export class PostService implements OnInit {
     ;
   }
 
-  getSinglePost(id: number) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database()
-          .ref(`/posts/${id}`)
-          .once('value').then(
-            (data) => {
-              resolve(data.val());
-            }, (error) => {
-              reject(error);
-            }
-          )
-        ;
-      }
-    );
-  }
-
   createNewPost(newPost: Post) {
     this.posts.push(newPost);
     this.savePosts();
@@ -71,5 +50,8 @@ export class PostService implements OnInit {
         }
       }
     );
+    this.posts.splice(indexToRemove, 1);
+    this.savePosts();
+    this.emitPosts();
   }
 }
