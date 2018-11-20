@@ -23,18 +23,21 @@ export class BooksService {
 
   getBooks() {
     firebase.database().ref('/books')
-      .on('value', (data) => {
-        this.books = data.val() ? data.val() : [];
-        this.emitBooks();
-      });
+      .on('value',
+        (data) => {
+          this.books = data.val() ? data.val() : [];
+          this.emitBooks();
+        }
+      )
+    ;
   }
 
   getSingleBook(id: number) {
     return new Promise(
-      (resole, reject) => {
+      (resolve, reject) => {
         firebase.database().ref(`/books/${id}`).once('value').then(
           (data) => {
-            resole(data.val());
+            resolve(data.val());
           }, (error) => {
             reject(error);
           }
@@ -50,6 +53,18 @@ export class BooksService {
   }
 
   removeBook(book: Book) {
+    if (book.photo) {
+      const storageRef = firebase.storage().refFromURL(book.photo);
+      storageRef.delete().then(
+        () => {
+          console.log('photo supprimée');
+        }
+      ).catch(
+        (error) => {
+          console.log(`erreur lors de la suppression ${error}`);
+        }
+      );
+    }
     const bookIndexToRemove = this.books.findIndex(
       (bookEl) => {
         if (bookEl === book) {
@@ -60,5 +75,32 @@ export class BooksService {
     this.books.splice(bookIndexToRemove, 1);
     this.saveBooks();
     this.emitBooks();
+  }
+
+  uploadFile(file: File) {
+    return new Promise(
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+
+        const upload = firebase.storage().ref()
+          .child(`images/${almostUniqueFileName}${file.name}`)
+          .put(file);
+
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log(`uploading...`);
+          }, (error) => {
+            console.log(`error during upload ! ${error}`);
+            reject();
+          }, () => {
+            upload.snapshot.ref.getDownloadURL().then(
+              (url) => {
+                resolve(url);
+              }
+            );
+          }
+        );
+      }
+    );
   }
 }
