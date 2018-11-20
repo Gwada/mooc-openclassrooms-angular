@@ -47,6 +47,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/styles.scss"
             ],
             "scripts": []
