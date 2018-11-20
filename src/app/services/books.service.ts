@@ -11,7 +11,9 @@ export class BooksService {
   books: Book[] = [];
   bookSubject = new Subject<Book[]>();
 
-  constructor() { }
+  constructor() {
+    this.getBooks();
+  }
 
   emitBooks() {
     this.bookSubject.next(this.books);
@@ -35,13 +37,16 @@ export class BooksService {
   getSingleBook(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref(`/books/${id}`).once('value').then(
-          (data) => {
-            resolve(data.val());
-          }, (error) => {
-            reject(error);
-          }
-        );
+        firebase.database()
+          .ref(`/books/${id}`)
+          .once('value').then(
+            (data) => {
+              resolve(data.val());
+            }, (error) => {
+              reject(error);
+            }
+          )
+        ;
       }
     );
   }
@@ -84,7 +89,8 @@ export class BooksService {
 
         const upload = firebase.storage().ref()
           .child(`images/${almostUniqueFileName}${file.name}`)
-          .put(file);
+          .put(file)
+        ;
 
         upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
           () => {
